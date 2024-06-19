@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-powered Food Waste Reduction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI-powered Food Waste Reduction</h1>
+    <p>Ask me about food expiration dates, proper storage techniques, and creative ways to use leftovers!</p>
+    
+    <input type="text" id="questionInput" placeholder="Type your question here..." style="width: 100%; padding: 10px; margin-bottom: 10px;">
+    <button onclick="getResponse()" style="padding: 10px 20px;">Ask</button>
+    
+    <div id="response"></div>
+
+    <div class="footer">
+        Made by Atharv Gupta 8B
+    </div>
+
+    <script>
+        // Simulated data for recommendations
+        const data = {
+            expiration: {
+                milk: 'Milk typically lasts 7 days past its sell-by date if refrigerated properly.',
+                bread: 'Bread can last up to a week at room temperature and up to 3 months in the freezer.',
+                eggs: 'Eggs can last 3-5 weeks in the refrigerator.'
+            },
+            storage: {
+                milk: 'Keep milk refrigerated at 4°C or lower to maximize freshness.',
+                bread: 'Store bread in a cool, dry place or freeze it for longer storage.',
+                eggs: 'Store eggs in their original carton in the coldest part of the refrigerator.'
+            },
+            recipes: {
+                chicken: 'Use leftover chicken to make chicken salad sandwiches or chicken soup.',
+                bananas: 'Overripe bananas are perfect for baking banana bread or making smoothies.',
+                bread: 'Stale bread can be used to make croutons or bread pudding.'
+            }
+        };
+
+        // Function to get a response based on user input
+        function getResponse() {
+            const question = document.getElementById('questionInput').value.toLowerCase();
+            let response = "I don't have information on that. Please ask about food expiration dates, storage techniques, or recipes for leftovers.";
+            
+            if (question.includes('expiration')) {
+                response = '<h3>Expiration Dates</h3><ul>';
+                for (const [key, value] of Object.entries(data.expiration)) {
+                    response += `<li><strong>${key}:</strong> ${value}</li>`;
+                }
+                response += '</ul>';
+            } else if (question.includes('storage')) {
+                response = '<h3>Storage Techniques</h3><ul>';
+                for (const [key, value] of Object.entries(data.storage)) {
+                    response += `<li><strong>${key}:</strong> ${value}</li>`;
+                }
+                response += '</ul>';
+            } else if (question.includes('recipe') || question.includes('leftover')) {
+                response = '<h3>Recipe Suggestions</h3><ul>';
+                for (const [key, value] of Object.entries(data.recipes)) {
+                    response += `<li><strong>${key}:</strong> ${value}</li>`;
+                }
+                response += '</ul>';
+            }
+            
+            document.getElementById('response').innerHTML = response;
+        }
+    </script>
+</body>
+</html>
